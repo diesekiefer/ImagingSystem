@@ -14,5 +14,5 @@ def meanshift(filename):
 
 
 if __name__ == "__main__":
-    filename = "/Users/diesekiefer/work/lectures/imagingsystem/data/town1.jpg"
+    filename = "./data/town1.jpg"
     meanshift(filename)
