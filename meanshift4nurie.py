@@ -15,7 +15,7 @@ def kmeans_clustering(img_src):
 
   # K-Means法
   criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 10, 1.0)
-  K = 16
+  K = 32
   ret,label,center=cv2.kmeans(Z,
                               K,
                               None,
@@ -35,14 +35,14 @@ def kmeans_clustering(img_src):
 
 def meanshift(filename):
     img = cv2.imread(filename, 1)
-    dst = cv2.pyrMeanShiftFiltering(img, 32, 32)
+    dst = cv2.pyrMeanShiftFiltering(img, 64, 64, 4)
     # canny_img = cv2.Canny(dst, 50, 110)
     cv2.imwrite("./data/hiyoko_meanshift.png", dst)
     # dst_gry = cv2.cvtColor(dst, cv2.COLOR_BGR2GRAY)
     # cv2.imwrite("./data/hiyoko_16.png", kmeans_clustering(img))
     # cv2.imwrite("./data/hiyoko.16_meanshift.png", kmeans_clustering(dst))
 
-    # cv2.imshow('image1', dst_gry)
+    # cv2.imshow('image1', kmeans_clustering(dst))
     # cv2.imshow('image2', ~canny_img)
     # cv2.waitKey(0)
     # cv2.destroyAllWindows()
