@@ -39,8 +39,8 @@ def makenurie(filename):
                     img_dst[x, y] = 0
 
     # ギザギザしすぎているので、ギザギザしてるとこのは消したい
-    for x in range(width):
-        for y in range(height):
+    # for x in range(width):
+    #     for y in range(height):
             
 
     cv2.imshow("figure", img_dst)
