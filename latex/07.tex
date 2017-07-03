@@ -27,6 +27,7 @@ urlcolor=blue
 本稿では，「４．アプリケーションを作ってみた」に基づき，
 %実施内容の概要を書く．
 与えられた画像からその色境界を識別してクラスタリングすることで，塗り絵の問題を自動生成するアルゴリズムを提案する．
+また，実際に人間などの手によって作成された塗り絵を採点する機能を提案する．
 
 \section{提案手法}
 % 課題４の場合は，アプリケーションの目標仕様を１節で述べ，本節では必要とな
@@ -38,6 +39,8 @@ urlcolor=blue
 \item 塗り絵の模範解答画像から，塗り絵の問題を作成する{\gtfamily 境界識別処理}．
 \end{enumerate}
 
+また，得られた塗り絵の問題を人間などが解いた後に，その結果がどの程度元画像と合致しているかどうかを示す尺度を導入する．
+
 \subsection{クラスタリング処理}
 塗り絵を行いやすい画像を得るためには，色の類似度・画像の空間的な距離を同時に考慮に入れつつ，
 塗り絵に用いる色の種類をある閾値以下に抑えることが望ましい．
@@ -46,11 +49,23 @@ urlcolor=blue
 
 まず，与えられた画像に mean shift 法による画像処理を施すことにより，
 
-
-
 \subsection{境界識別処理}
 上記手法によって得られた正解画像から塗り絵の問題を自動生成するために，
 色の一様な部分を白色に，色の境界線を黒色にすることで対象画像を線画化する．
+
+\subsection{評価関数}
+評価関数は，規格化のために以下のものを導入する．
+\begin{align}
+100-100\cdot\dfrac{D-D_{\mathrm{min}}}{D_{\mathrm{max}}-D_{\mathrm{min}}}
+\end{align}
+% ただし，
+% \begin{align}
+% D(\mathtt{x},\mathtt{y})=\sum_{i,j}\sqrt{
+% (r_{ij}^{\mathtt{x}}-r_{ij}^{\mathtt{y}})^2
+% +(b_{ij}^{\mathtt{x}}-b_{ij}^{\mathtt{y}})^2
+% +(g_{ij}^{\mathtt{x}}-g_{ij}^{\mathtt{y}})^2
+% }
+% \end{align}
 
 
 % オープンソースを使用した場合は，その詳細を述べる．また，ソースコードを公
@@ -71,21 +86,29 @@ urlcolor=blue
 %実験に用いた画像の詳細を述べる．自分で用意した画像の場合は，カメラの詳細を述べる．
 実験には，画素数（いくつ？）のパブリックドメインの画像を使用した．
 %計算機の詳細と計算時間を述べる．
+
 %実験結果の概要を述べる．
 
 \section{結論}
 
-
+\fboxsep=0pt
+\fboxrule=1pt
 \begin{figure}[t]
 \centering
-\includegraphics[width=70mm]{hiyoko_PD.png}
+\includegraphics[width=70mm]{kamome_PD.jpg}
 \caption{\quad 元画像．}
 \label{fig:original}
 \end{figure}
 \begin{figure}[t]
 \centering
-\includegraphics[width=70mm]{hiyoko_16_k-shift.png}
+\includegraphics[width=70mm]{kamome_PD_sp32_sr16_n8_it10_ans.png}
 \caption{\quad クラスタリング処理を行った後．}
+\label{fig:original}
+\end{figure}
+\begin{figure}[t]
+\centering
+\fbox{\includegraphics[width=70mm]{kamome_PD_sp32_sr16_n8_it10_quest.png}}
+\caption{\quad 得られた塗り絵の問題（外側の黒枠線は境界を明確にするために追加したものであり，元画像データにはない）．}
 \label{fig:original}
 \end{figure}
 
