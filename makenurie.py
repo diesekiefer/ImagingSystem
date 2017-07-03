@@ -39,6 +39,7 @@ def makenurie(filename):
                     img_dst[x, y] = 0
 
     # ギザギザしすぎているので、ギザギザしてるとこのは消したい
+
     neiborhood4 = np.array([[1, 1, 1],
                             [1, 1, 1],
                             [1, 1, 1]],
@@ -53,6 +54,9 @@ def makenurie(filename):
     img_dst = cv2.dilate(img_dst,
                               neiborhood4,
                               iterations=2)
+    # for x in range(width):
+    #     for y in range(height):
+
 
 
     cv2.imshow("figure", img_dst)
