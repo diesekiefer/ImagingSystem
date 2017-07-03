@@ -9,7 +9,7 @@ class Nurie:
         self.src = cv2.imread(filepath, 1)
         self.answer = None
 
-    def makequestion(self):
+    def makequestion(self, erode=False):
         """
         MAKEQUESTION
         :return: question image
@@ -41,6 +41,9 @@ class Nurie:
                     bot_color = src[x, y + 1]
                     if self.list_equal(my_color, bot_color, 3):
                         img_dst[x, y] = 0
+
+        if erode:
+            img_dst = self.erodedilate(img_dst)
         return img_dst
 
     def makeanswer(self, sp=32, sr=32, n_cluster=16, it=10):
@@ -84,15 +87,33 @@ class Nurie:
                 return 1
         return 0
 
+    def erodedilate(self, img):
+        neiborhood4 = np.array([[1, 1, 1],
+                                [1, 1, 1],
+                                [1, 1, 1]],
+                               np.uint8)
+
+        img_dst = cv2.erode(img,
+                            neiborhood4,
+                            iterations=2)
+        img_dst = cv2.dilate(img_dst,
+                             neiborhood4,
+                             iterations=2)
+        return img_dst
+
 
 if __name__ == "__main__":
-    nr = Nurie("./data/blue-tit.jpg")
+    picturename = "kamome_PD"
+    nr = Nurie("./data/{}.jpg".format(picturename))
     cv2.imshow("Source", nr.src)
-    cv2.waitKey(0)
-    img = nr.makeanswer(32,32,16,10)
+    cv2.waitKey(10)
+    sp, sr, n, it = 32, 16, 8, 10
+    img = nr.makeanswer(sp, sr, n, it)
     cv2.imshow("Answer",img)
     cv2.waitKey(0)
-    quest = nr.makequestion()
+    cv2.imwrite("./data/output/{}_sp{}_sr{}_n{}_it{}_ans.png".format(picturename, sp, sr, n, it), img)
+    quest = nr.makequestion(False)
     cv2.imshow("Question", quest)
     cv2.waitKey(0)
+    cv2.imwrite("./data/output/{}_sp{}_sr{}_n{}_it{}_quest.png".format(picturename, sp, sr, n, it), quest)
     cv2.destroyAllWindows()
