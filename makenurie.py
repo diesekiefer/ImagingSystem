@@ -39,14 +39,26 @@ def makenurie(filename):
                     img_dst[x, y] = 0
 
     # ギザギザしすぎているので、ギザギザしてるとこのは消したい
-    for x in range(width):
-        for y in range(height):
-            
+    neiborhood4 = np.array([[1, 1, 1],
+                            [1, 1, 1],
+                            [1, 1, 1]],
+                            np.uint8)
+
+
+
+
+    img_dst = cv2.erode(img_dst,
+                              neiborhood4,
+                              iterations=2)
+    img_dst = cv2.dilate(img_dst,
+                              neiborhood4,
+                              iterations=2)
+
 
     cv2.imshow("figure", img_dst)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
-    cv2.imwrite("./data/hiyoko_nurie.png", img_dst)
+    # cv2.imwrite("./data/hiyoko_nurie_morphology.png", img_dst)
 
 if __name__ == "__main__":
     filename = "./data/hiyoko_16_meanshift.png"
