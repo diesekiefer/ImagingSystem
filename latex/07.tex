@@ -16,7 +16,7 @@ urlcolor=blue
 
 \begin{document}
 \title{画像システム特論発表用レジュメ}
-\author{是松 優作，最上 伸一}
+\author{是松 優作 ， 最上 伸一}
 
 \setlength{\baselineskip}{4.4mm}	% 行間の設定
 \maketitle
@@ -54,11 +54,11 @@ urlcolor=blue
 上記手法によって得られた正解画像から塗り絵の問題を自動生成するために，
 色の一様な部分を白色に，色の境界線を黒色にすることで対象画像を線画化する．
 
-\subsection{評価関数}
-評価関数は，規格化のために以下のものを導入する．
-\begin{align}
-100-100\cdot\dfrac{D-D_{\mathrm{min}}}{D_{\mathrm{max}}-D_{\mathrm{min}}}
-\end{align}
+%\subsection{評価関数}
+%評価関数は，規格化のために以下のものを導入する．
+%\begin{align}
+%100-100\cdot\dfrac{D-D_{\mathrm{min}}}{D_{\mathrm{max}}-D_{\mathrm{min}}}
+%\end{align}
 % ただし，
 % \begin{align}
 % D(\mathtt{x},\mathtt{y})=\sum_{i,j}\sqrt{
@@ -83,16 +83,16 @@ urlcolor=blue
 
 \section{実験}
 %実験の条件を述べる．
-代表的な画像について，
+代表的な画像について，meanshiftの位置空間窓半径は32[px]色空間窓半径は32[px]，k-means クラスタリングのクラスタ数は16であった．
 %実験に用いた画像の詳細を述べる．自分で用意した画像の場合は，カメラの詳細を述べる．
-実験には，画素数（いくつ？）のパブリックドメインの画像を使用した．
+実験には，画素数$684\times1024$のパブリックドメインの画像を使用した．
 %計算機の詳細と計算時間を述べる．
 計算機のスペックは以下である．
-\begin{screen}
-MacBook (Retina, 12-inch, Early 2016)\\
-1.1 GHz Intel Core m3\\
+\begin{verbatim}
+MacBook (Retina, 12-inch, Early 2016)
+1.1 GHz Intel Core m3
 8 GB 1867 MHz LPDDR3
-\end{screen}
+\end{verbatim}
 実験にかかった時間は
 色のクラスタリング処理に19.39[sec]
 塗り絵画像生成に7.014[sec]

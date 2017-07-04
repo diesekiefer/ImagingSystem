@@ -14,7 +14,8 @@ def list_equal(a, b, n):
 #　加工した画像を入力に最終的な塗り絵画像を出力したい
 def makenurie(filename):
     img_src = cv2.imread(filename, 1)
-    # print(img_src)
+    print(img_src.shape)
+    quit()
     width, height, ch = img_src.shape
     img_dst = np.ones((width, height))*255
     for x in range(width):
@@ -65,5 +66,5 @@ def makenurie(filename):
     # cv2.imwrite("./data/hiyoko_nurie_morphology.png", img_dst)
 
 if __name__ == "__main__":
-    filename = "./data/hiyoko_16_meanshift.png"
+    filename = "./data/kamome_PD.jpg"
     makenurie(filename)
