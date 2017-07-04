@@ -161,10 +161,10 @@
 
 \long\def\@makecaption#1#2{% 図・表の見出しを作る命令
    \vskip 5\p@			% 10pt 下に進む
-   \setbox\@tempboxa\hbox{#1#2}% 「図1 何々」の形の箱を作る
+   \setbox\@tempboxa\hbox{#1\ #2}% 「図1 何々」の形の箱を作る
    \ifdim \wd\@tempboxa >\hsize % 箱が 1 行に入りきらないなら
-     \begin{list}{#1}{
-       \leftmargin 2zw \itemindent 0ex \labelsep 1ex%
+     \begin{list}{#1\ }{
+       \leftmargin 2.5zw \itemindent 0ex \labelsep 1ex%
        \labelwidth \leftmargin%
        \addtolength{\labelwidth}{-\itemindent}%
        \addtolength{\labelwidth}{-\labelsep}%

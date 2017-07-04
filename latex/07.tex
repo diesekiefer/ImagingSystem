@@ -5,6 +5,8 @@
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{ascmac}
+\usepackage{siunitx}
+\usepackage[hdivide={18mm,,18mm},vdivide={10mm,,20mm}]{geometry}
 
 \hypersetup{% hyperrefオプションリスト
 draft=false,
@@ -14,9 +16,14 @@ citecolor=Brown,
 urlcolor=blue
 }
 
+% 図3にて使用
+\fboxsep=0pt
+\fboxrule=1pt
+
+
 \begin{document}
-\title{画像システム特論発表用レジュメ}
-\author{是松 優作 ， 最上 伸一}
+\title{画素のクラスタリングに基づく塗り絵問題の自動生成}
+\author{是松 優作，最上 伸一}
 
 \setlength{\baselineskip}{4.4mm}	% 行間の設定
 \maketitle
@@ -25,9 +32,9 @@ urlcolor=blue
 
 \section{概要}
 %「４．アプリケーションを作ってみた」を実施したことを書く．
-本稿では，「４．アプリケーションを作ってみた」に基づき，
+本稿では，「4. アプリケーションを作ってみた」に基づき，
 %実施内容の概要を書く．
-与えられた画像からその色境界を識別してクラスタリングすることで，塗り絵の問題を自動生成するアルゴリズムを提案する．
+与えられた画像から塗り絵の問題を自動生成するアルゴリズムを提案する．
 また，実際に人間などの手によって作成された塗り絵を採点する機能を提案する．
 
 \section{提案手法}
@@ -39,20 +46,23 @@ urlcolor=blue
 \item 画像をクラスタリングして色の種類を減らし，塗り絵の模範解答の画像を生成する{\gtfamily クラスタリング処理}．
 \item 塗り絵の模範解答画像から，塗り絵の問題を作成する{\gtfamily 境界識別処理}．
 \end{enumerate}
-
-また，得られた塗り絵の問題を人間などが解いた後に，その結果がどの程度元画像と合致しているかどうかを示す尺度を導入する．
+以下，行う具体的な処理を示す．
+%また，得られた塗り絵の問題を人間などが解いた後に，その結果がどの程度元画像と合致しているかどうかを示す尺度を導入する．
 
 \subsection{クラスタリング処理}
 塗り絵を行いやすい画像を得るためには，色の類似度・画像の空間的な距離を同時に考慮に入れつつ，
 塗り絵に用いる色の種類をある閾値以下に抑えることが望ましい．
 そこで本稿では，mean shift 法を用いていくらかの画像クラスタリングを行った後の画像に，
-さらに k-means 法をかける手法を提案する．
+さらに k-means 法によるクラスタリング処理を行うことで，色の種類を制限する手法を提案する．
 
-まず，与えられた画像に mean shift 法による画像処理を施すことにより，
+%まず，与えられた画像に mean shift 法による画像処理を施すことにより，
 
 \subsection{境界識別処理}
 上記手法によって得られた正解画像から塗り絵の問題を自動生成するために，
-色の一様な部分を白色に，色の境界線を黒色にすることで対象画像を線画化する．
+色の一様な部分を白色に，色の境界線を黒色にすることで対象画像の境界を表示する．
+
+具体的には，各画素の上下左右の色を調べ，
+全て自分自身と同一の色であった場合は白を，そうでなかった場合は黒を格納する．
 
 %\subsection{評価関数}
 %評価関数は，規格化のために以下のものを導入する．
@@ -83,43 +93,60 @@ urlcolor=blue
 
 \section{実験}
 %実験の条件を述べる．
-代表的な画像について，meanshiftの位置空間窓半径は32[px]色空間窓半径は32[px]，k-means クラスタリングのクラスタ数は16であった．
+図\ref{fig:original}に示すパブリックドメインの原画像に対して提案する手法を適用し，
+図\ref{fig:answer}に示す解答画像，図\ref{fig:question}に示す問題画像を得た．
+%meanshiftの位置空間窓半径は32[px]色空間窓半径は32[px]，k-means クラスタリングのクラスタ数は16であった．
 %実験に用いた画像の詳細を述べる．自分で用意した画像の場合は，カメラの詳細を述べる．
-実験には，画素数$684\times1024$のパブリックドメインの画像を使用した．
 %計算機の詳細と計算時間を述べる．
-計算機のスペックは以下である．
+%実験結果の概要を述べる．
+実験に用いた計算機のスペックを以下に示す．
 \begin{verbatim}
 MacBook (Retina, 12-inch, Early 2016)
 1.1 GHz Intel Core m3
 8 GB 1867 MHz LPDDR3
 \end{verbatim}
-実験にかかった時間は
-色のクラスタリング処理に19.39[sec]
-塗り絵画像生成に7.014[sec]
+この環境で要した時間は，それぞれ
+色のクラスタリング処理に$\SI{18.72}{sec}$，
+塗り絵画像生成に$\SI{0.1354}{sec}$
 であった。
-%実験結果の概要を述べる．
 
 \section{結論}
+Mean shift 法および k-means 法を組み合わせることで塗り絵に適切な形で画素を分類し，
+更にその画像から塗り絵の問題を得た．
 
-\fboxsep=0pt
-\fboxrule=1pt
+\begin{table}
+\centering
+\caption{実験条件}
+\label{tab:experiment-condition}
+\begin{tabular}{cc}
+\vspace{-15pt}\\
+\noalign{\hrule height 0.4mm}
+パラメータ&値\\\hline
+mean shift 法での位置空間窓半径&$\SI{32}{px}$\\
+mean shift 法での色空間窓半径&$\SI{16}{px}$\\
+k-means 法でのクラスタ数&8\\
+k-means 法の試行回数&10回\\
+用いた画像の画素数&$684\times 1024$\\
+\noalign{\hrule height 0.4mm}
+\end{tabular}
+\end{table}
 \begin{figure}[t]
 \centering
 \includegraphics[width=70mm]{kamome_PD.jpg}
-\caption{\quad 元画像．}
+\caption{元画像．}
 \label{fig:original}
 \end{figure}
 \begin{figure}[t]
 \centering
 \includegraphics[width=70mm]{kamome_PD_sp32_sr16_n8_it10_ans.png}
-\caption{\quad クラスタリング処理を行った後．}
-\label{fig:original}
+\caption{クラスタリング処理を行って得られる塗り絵の解答画像．}
+\label{fig:answer}
 \end{figure}
 \begin{figure}[t]
 \centering
 \fbox{\includegraphics[width=70mm]{kamome_PD_sp32_sr16_n8_it10_quest.png}}
-\caption{\quad 得られた塗り絵の問題（外側の黒枠線は境界を明確にするために追加したものであり，元画像データにはない）．}
-\label{fig:original}
+\caption{得られた塗り絵の問題（外側の黒枠線は境界を明確にするために追加したものであり，元画像データにはない）．}
+\label{fig:question}
 \end{figure}
 
 % \small
