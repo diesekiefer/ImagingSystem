@@ -5,7 +5,7 @@ import cv2
 import numpy as np
 
 def distance_hsv(img1, img2):
-    weight = 2.0 # 距離の重み
+    weight = 1.0 # 距離の重み
     img1_hsv = cv2.cvtColor(img1, cv2.COLOR_RGB2HSV)
     img2_hsv = cv2.cvtColor(img2, cv2.COLOR_RGB2HSV)
 
@@ -48,10 +48,8 @@ def nurie_score(test_file, orginal_file, best_test_file):
     # hsvによるいい感じの距離を考えたい。
     # hの違いは大きくスコアに乗るようにしたい
 
-    dist = distance_hsv(img_test, img_org)
-    print(dist)
-    dist = distance_hsv(img_best, img_org)
-    print(dist)
+    test_score = distance_hsv(img_test, img_org)
+    best_score = distance_hsv(img_best, img_org)
 
 
     # cv2.imshow("figure",img_test_hsv)
@@ -59,7 +57,8 @@ def nurie_score(test_file, orginal_file, best_test_file):
     # cv2.destroyAllWindows()
 
     # best_score = 0
-    # return 100 - (test_score - best_score) / (worst_score - best_score) * 100
+    worst_score = 200000000
+    return 100 - (test_score - best_score) / ( worst_score- best_score) * 100
 
 if __name__ == "__main__":
     print(nurie_score("./data/output/paintbad.png", "./data/output/kamome_PD_answer1.png",  "./data/output/kamome_PD_answer2.png"))
