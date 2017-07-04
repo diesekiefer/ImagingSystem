@@ -21,26 +21,52 @@ class Nurie:
             src = self.answer
         width, height, ch = src.shape
         img_dst = np.ones((width, height)) * 255
-        for x in range(width):
-            for y in range(height):
-                # 周囲の画素の色をみて、それを元に自分の位置が黒になるか白になるかを決める
-                my_color = src[x, y]
-                left_color = src[x - 1, y]
-                if x != 0:
-                    if self.list_equal(my_color, left_color, 3):
-                        img_dst[x, y] = 0
-                if x != width - 1:
-                    right_color = src[x + 1, y]
-                    if self.list_equal(my_color, right_color, 3):
-                        img_dst[x, y] = 0
-                if y != 0:
-                    top_color = src[x, y - 1]
-                    if self.list_equal(my_color, top_color, 3):
-                        img_dst[x, y] = 0
-                if y != height - 1:
-                    bot_color = src[x, y + 1]
-                    if self.list_equal(my_color, bot_color, 3):
-                        img_dst[x, y] = 0
+
+        size = tuple(np.array([src.shape[1], src.shape[0]]))
+        matrix = [[1, 0, 1],
+                    [0, 1, 0]]
+        affine_matrix = np.float32(matrix)
+        img_left = cv2.warpAffine(src, affine_matrix, size, flags=cv2.INTER_LINEAR)
+        img_left[:,0,:] = src[:,0,:]
+
+        matrix = [[1, 0, -1],
+                    [0, 1, 0]]
+        affine_matrix = np.float32(matrix)
+        img_right = cv2.warpAffine(src, affine_matrix, size, flags=cv2.INTER_LINEAR)
+        img_right[:,height-1,:] = src[:,height-1,:]
+
+        matrix = [[1, 0, 0],
+                    [0, 1, 1]]
+        affine_matrix = np.float32(matrix)
+        img_top = cv2.warpAffine(src, affine_matrix, size, flags=cv2.INTER_LINEAR)
+        img_top[0,:,:] = src[0,:,:]
+        matrix = [[1, 0, 0],
+                    [0, 1, -1]]
+        affine_matrix = np.float32(matrix)
+        img_bot = cv2.warpAffine(src, affine_matrix, size, flags=cv2.INTER_LINEAR)
+        img_bot[width-1,:,:] = src[width-1,:,:]
+
+        img_dst = (np.all((src == img_left), axis=2) * np.all((src == img_right), axis=2) * np.all((src == img_top), axis=2) * np.all((src == img_bot), axis=2)).astype(np.uint8) * 255
+        # for x in range(width):
+        #     for y in range(height):
+        #         # 周囲の画素の色をみて、それを元に自分の位置が黒になるか白になるかを決める
+        #         my_color = src[x, y]
+        #         left_color = src[x - 1, y]
+        #         if x != 0:
+        #             if self.list_equal(my_color, left_color, 3):
+        #                 img_dst[x, y] = 0
+        #         if x != width - 1:
+        #             right_color = src[x + 1, y]
+        #             if self.list_equal(my_color, right_color, 3):
+        #                 img_dst[x, y] = 0
+        #         if y != 0:
+        #             top_color = src[x, y - 1]
+        #             if self.list_equal(my_color, top_color, 3):
+        #                 img_dst[x, y] = 0
+        #         if y != height - 1:
+        #             bot_color = src[x, y + 1]
+        #             if self.list_equal(my_color, bot_color, 3):
+        #                 img_dst[x, y] = 0
 
         if erode:
             img_dst = self.erodedilate(img_dst)
