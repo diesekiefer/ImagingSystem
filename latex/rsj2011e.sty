@@ -1,18 +1,18 @@
-% 
+%
 %   Modefied by Ryuichi Hodoshima 2011/05/23 for pLaTeX2e
-%     › VƒtƒH[ƒ}ƒbƒg‚É‘Î‰
-%     › ‰pŒêƒ^ƒCƒgƒ‹C‰pŒê’˜Ò–¼CabstructCKeyword‚ğ”rœ
-%     › Wordƒeƒ“ƒvƒŒ[ƒg‚É‘Î‰‚µAtopmargin‚ğ5[mm] >> 0[mm]
-% 
+%     â—‹ æ–°ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã«å¯¾å¿œ
+%     â—‹ è‹±èªã‚¿ã‚¤ãƒˆãƒ«ï¼Œè‹±èªè‘—è€…åï¼Œabstructï¼ŒKeywordã‚’æ’é™¤
+%     â—‹ Wordãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆã«å¯¾å¿œã—ã€topmarginã‚’5[mm] >> 0[mm]
+%
 %   Modefied by Koh Hosoda 2001/06/13 for pLaTeX2e
-%     › jarticle.sty‚Ì“Ç‚İ‚ğŒ³‚Ìƒtƒ@ƒCƒ‹‚É‚·‚é(.cls‚Ö‚Ì‘Î‰‚Ì‚½‚ß)
-%     › \def\document‚ÉŠÖ‚·‚é’è‹`‚ğíœ(‚à‚Æ‚à‚ÆC‚±‚Ì’è‹`‚Ílatex.tex“à‚Å‚È
-%        ‚³‚ê‚Ä‚¢‚é‚½‚ßCpLaTeX2e‚Å‚ÍƒGƒ‰[‚Æ‚È‚é)
-%     › latex209‚ÆCŒ©‚Ä‚­‚ê‚ª—‚é‚æ‚¤‚ÉCtitle‰ñ‚è‚Ì¡–@’²®
+%     â—‹ jarticle.styã®èª­è¾¼ã¿ã‚’å…ƒã®ãƒ•ã‚¡ã‚¤ãƒ«ã«ã™ã‚‹(.clsã¸ã®å¯¾å¿œã®ãŸã‚)
+%     â—‹ \def\documentã«é–¢ã™ã‚‹å®šç¾©ã‚’å‰Šé™¤(ã‚‚ã¨ã‚‚ã¨ï¼Œã“ã®å®šç¾©ã¯latex.texå†…ã§ãª
+%        ã•ã‚Œã¦ã„ã‚‹ãŸã‚ï¼ŒpLaTeX2eã§ã¯ã‚¨ãƒ©ãƒ¼ã¨ãªã‚‹)
+%     â—‹ latex209ã¨ï¼Œè¦‹ã¦ãã‚ŒãŒä¼¼ã‚‹ã‚ˆã†ã«ï¼Œtitleå›ã‚Šã®å¯¸æ³•èª¿æ•´
 %
 %   Revision 1.2  1995/08/18  08:25:44  oshiro
 %	14/08/95 OSHIRO Naoki
-% 
+%
 %
 \typeout{*** Document Style 'RSJ 2011 for pLaTeX2e' (2011/07/01) ***}
 
@@ -54,23 +54,23 @@
 %\def\document{\endgroup
 %  \@colht\textheight  \@colroom\textheight \vsize\textheight
 %   \columnwidth\textwidth \@clubpenalty\clubpenalty
-%   \if@twocolumn \advance\columnwidth -\columnsep 
-%      \divide\columnwidth\tw@ \hsize\columnwidth \@firstcolumntrue 
+%   \if@twocolumn \advance\columnwidth -\columnsep
+%      \divide\columnwidth\tw@ \hsize\columnwidth \@firstcolumntrue
 %   \fi
 %  \hsize\columnwidth \linewidth\hsize
 %  \begingroup\@floatplacement\@dblfloatplacement
 %   \makeatletter\let\@writefile\@gobbletwo
-%   \@input{\jobname.aux}\endgroup 
+%   \@input{\jobname.aux}\endgroup
 %  \if@filesw \immediate\openout\@mainaux=\jobname.aux
 %    \immediate\write\@mainaux{\relax}\fi
 %  \def\do##1{\let ##1\@notprerr}%
 %  \@preamblecmds
-%  \let\do\noexpand  
+%  \let\do\noexpand
 %  \@normalsize\everypar{}\baselineskip7mm}
 
 \def\title#1{\gdef\@title{#1}}
 \def\author#1{\gdef\@author{#1}}
-\def\and{%%   % \begin{tabular} 
+\def\and{%%   % \begin{tabular}
   \end{tabular}%
   \hskip 1zw plus .01fil%
   \begin{tabular}[t]{c}%% \end{tabular}
@@ -95,7 +95,7 @@
 \def\thesection{\arabic{section}.}
 \def\thesubsection{\arabic{section}.\arabic{subsection}}
 
-\def\@eqnnum{{\rm(\theequation)}} 
+\def\@eqnnum{{\rm(\theequation)}}
 \def\eqnarray{%
   \stepcounter{equation}%
   \let\@currentlabel=\theequation
@@ -109,35 +109,35 @@
   &\global\@eqcnt\tw@$\displaystyle\tabskip\z@{##}$\hfil
   \tabskip\@centering&\llap{##}\tabskip\z@\cr}
 
-\def\thebibliography#1{% Ql•¶Œ£o—Í–½—ß
-  \vskip 1zh plus .2ex minus .2ex 
-  \noindent{\normalsize\bf Ql•¶Œ£}\par\@mkboth{References}{References}
-  \list{[\arabic{enumi}]}			% ƒ‰ƒxƒ‹‚Í [1], [2], ...
-    {\settowidth\labelwidth{#1)}		% ƒ‰ƒxƒ‹‚Ì•‚Í [ˆø”]
-     \leftmargin\labelwidth		% ¶—]”’‚Íƒ‰ƒxƒ‹•
+\def\thebibliography#1{% å‚è€ƒæ–‡çŒ®å‡ºåŠ›å‘½ä»¤
+  \vskip 1zh plus .2ex minus .2ex
+  \noindent{\normalsize\bf å‚è€ƒæ–‡çŒ®}\par\@mkboth{References}{References}
+  \list{[\arabic{enumi}]}			% ãƒ©ãƒ™ãƒ«ã¯ [1], [2], ...
+    {\settowidth\labelwidth{#1)}		% ãƒ©ãƒ™ãƒ«ã®å¹…ã¯ [å¼•æ•°]
+     \leftmargin\labelwidth		% å·¦ä½™ç™½ã¯ãƒ©ãƒ™ãƒ«å¹…
      \parsep \z@ plus 1pt minus 1pt
      \itemsep \z@ plus 1pt minus 1pt
-     \advance \leftmargin by \labelsep	% ¶—]”’‚ğ \labelsep ‚¾‚¯‘‚·
-     \usecounter{enumi}}			% enumi ƒJƒEƒ“ƒ^‚Å•¶Œ£”Ô†‚ğ”‚¦‚é
+     \advance \leftmargin by \labelsep	% å·¦ä½™ç™½ã‚’ \labelsep ã ã‘å¢—ã™
+     \usecounter{enumi}}			% enumi ã‚«ã‚¦ãƒ³ã‚¿ã§æ–‡çŒ®ç•ªå·ã‚’æ•°ãˆã‚‹
   \def\newblock{\hskip .11em plus .33em minus .07em}%
-  					% \newblock ‚ÍáŠ±‚Ì‹ó‚«‚ğ‚ ‚¯‚é–½—ß  
-  \sloppy				% ’i—‚Í‘½­‹ó‚«‚ª•s‘µ‚¢‚Å‚à‚æ‚¢
-  \clubpenalty=4000 \widowpenalty=4000		% ‚È‚é‚×‚­’i—’†‚Ì‚Ps‚¾‚¯•Êƒy[ƒW‚É‚È‚ç‚È‚¢‚æ‚¤‚É
-  \sfcode`\.=1000\relax}				% ã‚Ì‰ğàQÆ
-\let\endthebibliography=\endlist		% I‚í‚è‚Í list ‚ÌI‚í‚è‚Æ“¯‚¶
+  					% \newblock ã¯è‹¥å¹²ã®ç©ºãã‚’ã‚ã‘ã‚‹å‘½ä»¤
+  \sloppy				% æ®µè½ã¯å¤šå°‘ç©ºããŒä¸æƒã„ã§ã‚‚ã‚ˆã„
+  \clubpenalty=4000 \widowpenalty=4000		% ãªã‚‹ã¹ãæ®µè½ä¸­ã®ï¼‘è¡Œã ã‘åˆ¥ãƒšãƒ¼ã‚¸ã«ãªã‚‰ãªã„ã‚ˆã†ã«
+  \sfcode`\.=1000\relax}				% ä¸Šã®è§£èª¬å‚ç…§
+\let\endthebibliography=\endlist		% çµ‚ã‚ã‚Šã¯ list ã®çµ‚ã‚ã‚Šã¨åŒã˜
 %\def\@cite#1#2{$^{\hbox{\scriptsize{#1\if@tempswa , #2\fi})}}$}
 \def\@cite#1#2{[{#1\if@tempswa , #2\fi}]}
 
-\def\section{\@startsection {section}{1}{\z@}{.8ex plus .5ex minus 
+\def\section{\@startsection {section}{1}{\z@}{.8ex plus .5ex minus
  .2ex}{.5ex plus .2ex}{\large\bf}}
-\def\subsection{\@startsection{subsection}{2}{\z@}{.8ex plus .5ex minus 
+\def\subsection{\@startsection{subsection}{2}{\z@}{.8ex plus .5ex minus
  .2ex}{.5ex plus .2ex}{\normalsize\bf}}
-\def\subsubsection{\@startsection{subsubsection}{3}{\z@}{.8ex plus 
+\def\subsubsection{\@startsection{subsubsection}{3}{\z@}{.8ex plus
 .5ex minus .2ex}{.5ex plus .2ex}{\normalsize\bf}}
 \def\paragraph{\@startsection
  {paragraph}{4}{\z@}{0.5ex plus .3ex minus .2ex}{-1em}{\normalsize\bf}}
 \def\subparagraph{\@startsection
- {subparagraph}{4}{\parindent}{0.5ex plus .3ex minus 
+ {subparagraph}{4}{\parindent}{0.5ex plus .3ex minus
  .2ex}{-1em}{\normalsize\bf}}
 
 \def\labfig#1{\label{fig:#1}}
@@ -147,11 +147,11 @@
 \def\reftab#1{{\bf Table }\ref{tab:#1}}
 \def\refeq#1{{\bf eq.}(\ref{eq:#1})}
 
-\def\fnum@figure{{}}\thefigure}
-\def\fnum@table{{•\}\thetable}
+\def\fnum@figure{{å›³}\thefigure}
+\def\fnum@table{{è¡¨}\thetable}
 
 \long\def\@caption#1[#2]#3{\par\addcontentsline{\csname
-  ext@#1\endcsname}{#1}{\protect\numberline{\csname 
+  ext@#1\endcsname}{#1}{\protect\numberline{\csname
   the#1\endcsname}{\ignorespaces #2}}\begingroup
     \@parboxrestore
 %    \normalsize
@@ -159,10 +159,10 @@
     \@makecaption{\csname fnum@#1\endcsname}{\ignorespaces #3}\par
   \endgroup}
 
-\long\def\@makecaption#1#2{% }E•\‚ÌŒ©o‚µ‚ğì‚é–½—ß
-   \vskip 5\p@			% 10pt ‰º‚Éi‚Ş 
-   \setbox\@tempboxa\hbox{#1#2}% u}1 ‰½Xv‚ÌŒ`‚Ì” ‚ğì‚é
-   \ifdim \wd\@tempboxa >\hsize % ” ‚ª 1 s‚É“ü‚è‚«‚ç‚È‚¢‚È‚ç
+\long\def\@makecaption#1#2{% å›³ãƒ»è¡¨ã®è¦‹å‡ºã—ã‚’ä½œã‚‹å‘½ä»¤
+   \vskip 5\p@			% 10pt ä¸‹ã«é€²ã‚€
+   \setbox\@tempboxa\hbox{#1#2}% ã€Œå›³1 ä½•ã€…ã€ã®å½¢ã®ç®±ã‚’ä½œã‚‹
+   \ifdim \wd\@tempboxa >\hsize % ç®±ãŒ 1 è¡Œã«å…¥ã‚Šãã‚‰ãªã„ãªã‚‰
      \begin{list}{#1}{
        \leftmargin 2zw \itemindent 0ex \labelsep 1ex%
        \labelwidth \leftmargin%
@@ -170,10 +170,10 @@
        \addtolength{\labelwidth}{-\labelsep}%
        \rightmargin=\leftmargini%
        \addtolength{\rightmargin}{-\itemindent}}%
-       \item#2		% ’Êí‚Ì’i‘g‚Æ‚µ‚Ä‘g‚Şi‚¤‚»j
+       \item#2		% é€šå¸¸ã®æ®µçµ„ã¨ã—ã¦çµ„ã‚€ï¼ˆã†ãï¼‰
      \end{list}\par%
-   \else			% ‚»‚¤‚Å‚È‚¯‚ê‚Î
-       \hbox to\hsize{\hfil\box\@tempboxa\hfil}% ” ‚ğ’†‰›‘µ‚¦‚Åo—Í  
+   \else			% ãã†ã§ãªã‘ã‚Œã°
+       \hbox to\hsize{\hfil\box\@tempboxa\hfil}% ç®±ã‚’ä¸­å¤®æƒãˆã§å‡ºåŠ›
    \fi}
 
 \def\deg{${}^\circ$}
@@ -202,19 +202,19 @@
   {\bf Step \arabic{stepnumber}.}%
   \hspace{1em}}
 
-\def\quotation{% \begin{quotation} ‚ÅÀs‚³‚ê‚é–½—ß
-  \list{}{% \list ‚Í \begin{list} ‚ÅÀs‚³‚ê‚é–½—ß
-    \listparindent=5ex		% ’i—‚Ì“ª‰º‚°
-    \itemindent=\listparindent	% €–Ú‚Ì“ª‰º‚°‚à“¯‚¶
-    \rightmargin\leftmargin	% ¶‰E‚Ì‹ó”’‚ğ“™‚µ‚­
+\def\quotation{% \begin{quotation} ã§å®Ÿè¡Œã•ã‚Œã‚‹å‘½ä»¤
+  \list{}{% \list ã¯ \begin{list} ã§å®Ÿè¡Œã•ã‚Œã‚‹å‘½ä»¤
+    \listparindent=5ex		% æ®µè½ã®é ­ä¸‹ã’
+    \itemindent=\listparindent	% é …ç›®ã®é ­ä¸‹ã’ã‚‚åŒã˜
+    \rightmargin\leftmargin	% å·¦å³ã®ç©ºç™½ã‚’ç­‰ã—ã
     \parsep 0pt plus 1pt}
   \item[]}
-\let\endquotation=\endlist	% \end{quotation} ‚ÅÀs‚³‚ê‚é–½—ß
+\let\endquotation=\endlist	% \end{quotation} ã§å®Ÿè¡Œã•ã‚Œã‚‹å‘½ä»¤
 
-\def\quote{% \begin{quote} ‚ÅÀs‚³‚ê‚é–½—ß
+\def\quote{% \begin{quote} ã§å®Ÿè¡Œã•ã‚Œã‚‹å‘½ä»¤
   \list{}{\rightmargin\leftmargin}\item[]}
-			% ’i—‚Ì“ª‰º‚°‚ğ‚µ‚È‚¢“_‚ª quotation ‚ÆˆÙ‚È‚é
-\let\endquote=\endlist% \end{quote} ‚ÅÀs‚³‚ê‚é–½—ß
+			% æ®µè½ã®é ­ä¸‹ã’ã‚’ã—ãªã„ç‚¹ãŒ quotation ã¨ç•°ãªã‚‹
+\let\endquote=\endlist% \end{quote} ã§å®Ÿè¡Œã•ã‚Œã‚‹å‘½ä»¤
 
 \newcount\@itemdepth \@itemdepth = 0
 \def\itemize{%
@@ -253,7 +253,7 @@
   \fi}
 \let\endenumerate =\endlist
 
-% ƒtƒ[ƒg‚ÌŠeİ’è
+% ãƒ•ãƒ­ãƒ¼ãƒˆã®å„è¨­å®š
 \setcounter{topnumber}{3}
 \def\topfraction{.95}
 \setcounter{bottomnumber}{2}
@@ -261,4 +261,3 @@
 \setcounter{totalnumber}{4}
 \def\textfraction{.05}
 \def\floatpagefraction{.5}
-

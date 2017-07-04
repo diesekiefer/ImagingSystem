@@ -4,6 +4,7 @@
 \usepackage[usenames]{color}
 \usepackage{graphicx}
 \usepackage{hyperref}
+\usepackage{ascmac}
 
 \hypersetup{% hyperrefオプションリスト
 draft=false,
@@ -86,7 +87,16 @@ urlcolor=blue
 %実験に用いた画像の詳細を述べる．自分で用意した画像の場合は，カメラの詳細を述べる．
 実験には，画素数（いくつ？）のパブリックドメインの画像を使用した．
 %計算機の詳細と計算時間を述べる．
-
+計算機のスペックは以下である．
+\begin{screen}
+MacBook (Retina, 12-inch, Early 2016)\\
+1.1 GHz Intel Core m3\\
+8 GB 1867 MHz LPDDR3
+\end{screen}
+実験にかかった時間は
+色のクラスタリング処理に19.39[sec]
+塗り絵画像生成に7.014[sec]
+であった。
 %実験結果の概要を述べる．
 
 \section{結論}

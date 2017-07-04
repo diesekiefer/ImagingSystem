@@ -1,7 +1,7 @@
 import sys
 import cv2
 import numpy as np
-
+import time
 
 class Nurie:
     def __init__(self, filepath="./data/hiyoko_PD.jpg"):
@@ -106,14 +106,21 @@ if __name__ == "__main__":
     picturename = "kamome_PD"
     nr = Nurie("./data/{}.jpg".format(picturename))
     cv2.imshow("Source", nr.src)
-    cv2.waitKey(10)
+    # cv2.waitKey(10)
+    start = time.time()
     sp, sr, n, it = 32, 16, 8, 10
     img = nr.makeanswer(sp, sr, n, it)
     cv2.imshow("Answer",img)
-    cv2.waitKey(0)
+    # cv2.waitKey(0)
     cv2.imwrite("./data/output/{}_sp{}_sr{}_n{}_it{}_ans.png".format(picturename, sp, sr, n, it), img)
+    tmp = time.time()
+    print ("answer_time:{0}".format(tmp - start) + "[sec]")
     quest = nr.makequestion(False)
     cv2.imshow("Question", quest)
-    cv2.waitKey(0)
+    # cv2.waitKey(0)
     cv2.imwrite("./data/output/{}_sp{}_sr{}_n{}_it{}_quest.png".format(picturename, sp, sr, n, it), quest)
+
+    end = time.time()
+    print ("quest_time:{0}".format(end - tmp) + "[sec]")
+    cv2.waitKey(0)
     cv2.destroyAllWindows()
