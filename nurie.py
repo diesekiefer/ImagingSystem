@@ -129,12 +129,16 @@ class Nurie:
 
 
 if __name__ == "__main__":
-    picturename = "kamome_PD"
-    nr = Nurie("./data/{}.jpg".format(picturename))
+    # picturename = "kamome_PD"
+    # picturetype = "jpg"
+    picturename = "hiyoko_PD"
+    picturetype = "jpg"
+    nr = Nurie("./data/{}.{}".format(picturename, picturetype))
     cv2.imshow("Source", nr.src)
     # cv2.waitKey(10)
     start = time.time()
-    sp, sr, n, it = 32, 16, 8, 10
+    # sp, sr, n, it = 32, 16, 8, 10
+    sp, sr, n, it = 32, 16, 12, 10
     img = nr.makeanswer(sp, sr, n, it)
     cv2.imshow("Answer",img)
     # cv2.waitKey(0)
